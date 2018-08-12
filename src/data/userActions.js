@@ -12,7 +12,13 @@ JSON FUNCTIONS
 -	getuserDNA(name)			returns the DNA of a user
 -	getBio(DNA)						returns the bio of a user
 -	fetchJSON()						returns the json object
+--getAvatarLink(DNA)		returns
 */
+
+	export function getAvatarLink(DNA){
+		const link = ('avatar-' + DNA + '.jpg');
+		return link;
+	}
 
 //returns the number of users in users.json
 export function getNumUsers(){
