@@ -17,7 +17,6 @@ function Faces(props){
 
 function MakeFaces(props){
 	const fa = "fa-" + props.value;
-	console.log(fa);
 	return <li><a href={props.link} className={fa}>{props.value}</a></li>;
 }
 

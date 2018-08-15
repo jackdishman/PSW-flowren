@@ -9,47 +9,32 @@ Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList
 */
 
 import React, {Component} from 'react';
-import Avatar from '../Components/Avatar';
-import Face from '../Components/Face';
-import Bio from '../Components/Bio';
-import Name from '../Components/Name';
+import RegisterForm from '../Components/RegisterForm';
 
 //import ReactDOM from 'react-dom';
-import {
-//	fetchJSON,
-//	getNumUsers,
-//	getUserFullNames,
-	getUserLinks,
-//	getUserDNA,
-	getUserName,
-	getBio,
-	getAvatarLink
-} from "../data/userActions";
+import { } from "../data/userActions";
 
-class IdentityContainer extends Component {
+class RegisterContainer extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			DNA: '0002',
+
 		};
 		this.onTestFunction = this.onTestFunction.bind(this);
 	}
 
 	onTestFunction(){
 		//const data = fetchJSON();
-		console.log('avatar-' + this.state.DNA + '.jpg');
+		console.log('Test Function');
 	}
 
 	render(){
 		return(
 			<div id="main">
-				<Name FullName = {getUserName(this.state.DNA)}/>
-				<Avatar Link={getAvatarLink(this.state.DNA)} />
-				<Face face={getUserLinks(this.state.DNA)} />
-				<Bio Desc={getBio(this.state.DNA)} />
+				<RegisterForm />
 			</div>
 		);
 	}
 }
 
-export default IdentityContainer;
+export default RegisterContainer;

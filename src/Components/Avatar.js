@@ -9,9 +9,9 @@ class Avatar extends Component {
 	}
 	render(){
 		return(
-			<span className="avatar">
+			<div className="avatar">
 				<img src={this.props.Link} />
-			</span>
+			</div>
 		);
 	}
 }

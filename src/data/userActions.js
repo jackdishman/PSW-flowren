@@ -3,6 +3,8 @@ const data = require('./users.json');
 
 var LIST_iLINK = ["facebook","twitter","instagram","snapchat","soundcloud"];
 
+var lastDNA = 2;
+
 /*
 JSON FUNCTIONS
 -	getNumUsers()					Returns number of users
@@ -15,9 +17,14 @@ JSON FUNCTIONS
 --getAvatarLink(DNA)		returns
 */
 
+	export function createNewDNA(lastDNA){
+		var count = getNumUsers();
+		count++;
+		return count;
+	}
+
 	export function getAvatarLink(DNA){
-		const link = ('avatar-' + DNA + '.jpg');
-		return link;
+		return require('../images/avatar-' + DNA + '.jpg');
 	}
 
 //returns the number of users in users.json
@@ -71,7 +78,7 @@ export function getUserName(DNA){
 export function getUserDNA(name){
 	var i = 0;
 	while(i < getNumUsers()){
-		var fullName = data.users[i].firstName + " " + data.users[i].lastName;
+		var fullName = data.users[i].userName;
 		if(name === fullName){
 			return data.users[i].DNA;
 		}
