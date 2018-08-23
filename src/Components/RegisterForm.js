@@ -2,96 +2,59 @@
 import React, {Component} from 'react';
 //import ReactDOM from 'react-dom';
 import { createNewDNA } from "../data/userActions";
+import NameAction from '../Components/Register/NameAction';
+
 
 class RegisterForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			DNA: createNewDNA(),
-			createName:true,
-			createAvatarImg:false,
-			createBio:false,
-			createFaces:false,
-			createConfirm:false,
-			createSubmit:false,
+			createName:1,
+			nameValue:'',
+			bioValue:'',
+			passwordValue:'',
+			linkType:'',
+			linkAddress:'',
 		};
-		this.registerNameToAvatar = this.registerNameToAvatar.bind(this);
-		this.registerAvatarToBio = this.registerAvatarToBio.bind(this);
-		this.registerBioToFaces = this.registerBioToFaces.bind(this);
-		this.onRegisterConfirm = this.onRegisterConfirm.bind(this);
-		this.onSubmitNewUser = this.onSubmitNewUser.bind(this);
-		this.editInfo = this.editInfo.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+	handleInputChange(event) {
+		const target = event.target;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const name = target.name;
+		this.setState({
+			[name]: value,
+		});
+	}
+	handleSubmit(event){
+		event.preventDefault();
+		console.log(this.state);
 	}
 
-	registerNameToAvatar(event){
-		event.preventDefault();
-		this.setState({createName: !this.state.createName});
-		this.setState({createAvatarImg: !this.state.createAvatarImg});
-	}
-	registerAvatarToBio(event){
-		event.preventDefault();
-		this.setState({createAvatarImg: !this.state.createAvatarImg});
-		this.setState({createBio: !this.state.createBio});
-	}
-	registerBioToFaces(event){
-		event.preventDefault();
-		this.setState({createBio: !this.state.createBio});
-		this.setState({createFaces: !this.state.createFaces});
-	}
-	onRegisterConfirm(event){
-		event.preventDefault();
-		this.setState({createFaces: !this.state.createFaces});
-		this.setState({createConfirm: !this.state.createConfirm});
-	}
-	onSubmitNewUser(event){
-		event.preventDefault();
-		console.log("submitting new user data");
-		//submit user data
-	}
-	editInfo(event){
-		event.preventDefault();
-		console.log("editing info wooohooo");
-	}
 		render(){
 		return(
 			<div className="RegisterForm">
 				<h1>Register Form</h1>
-				{(this.state.createName) && (
-					<div>
-						<p>create Name </p>
-						<input type='text' />
-						<br />
-						<button onClick={this.registerNameToAvatar}>Next</button>
+				<form onSubmit={this.handleSubmit}>
+					<label>Name: <input name='nameValue' type='text' value={this.state.nameValue} onChange={this.handleInputChange}  /> </label>
+					<label>Bio: <input name='bioValue' type='text' value={this.state.bioValue} onChange={this.handleInputChange}  /> </label>
+					<div className='createFaces'>
+					<label>Online Identities:
+						<select name='linkType' value={this.state.linkType} onChange={this.handleInputChange} >
+							<option value='facebook'>Facebook</option>
+							<option value='twitter'>Twitter</option>
+							<option value='soundcloud'>Soundcloud</option>
+							<option value='instagram'>Instagram</option>
+							<option value='spotify'>Spotify</option>
+							<option value='linkedin'>LinkedIn</option>
+						</select>
+						<input name='linkAddress' type='text' value={this.state.linkAddress} onChange={this.handleInputChange} placeholder={'web url'} />
+						</label>
 					</div>
-				)}
-				{(this.state.createAvatarImg) && (
-					<div>
-						<p>create avatar image </p>
-						<button onClick={this.registerAvatarToBio}>Next</button>
-					</div>
-				)}
-				{(this.state.createBio) && (
-					<div>
-						<p>Page Bio</p>
-						<input type='text' />
-						<br />
-						<button onClick={this.registerBioToFaces}>Next</button>
-					</div>
-				)}
-				{(this.state.createFaces) && (
-					<div>
-						<p>create faces page</p>
-						<button onClick={this.addNewFace}>Add New Face</button>
-						<button onClick={this.onRegisterConfirm}>Confirm Info</button>
-					</div>
-				)}
-				{(this.state.createConfirm) && (
-					<div>
-						<p>Confirmation page..everything look ok?</p>
-						<button onClick={this.editInfo}>Edit Info</button>
-						<button onClick={this.onSubmitNewUser}>Submit Info</button>
-					</div>
-				)}
+					<input type='submit' value='Submit' />
+				</form>
 			</div>
 		);
 	}

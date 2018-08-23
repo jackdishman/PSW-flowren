@@ -23,9 +23,9 @@ JSON FUNCTIONS
 		return count;
 	}
 
-	export function getAvatarLink(DNA){
-		return require('../images/avatar-' + DNA + '.jpg');
-	}
+	// export function getAvatarLink(DNA){
+	// 	return require('../images/avatar-' + DNA + '.jpg');
+	// }
 
 //returns the number of users in users.json
 export function getNumUsers(){
@@ -37,7 +37,7 @@ export function getUserFullNames(){
 	var i = 0;
 	var nameList = [];
 	while(i < getNumUsers()){
-		var fullName = data.users[i].firstName + " " + data.users[i].lastName;
+		var fullName = data.users[i].userName;
 		nameList.push(fullName);
 		i++;
 	}
@@ -49,7 +49,6 @@ export function getUserLinks(DNA){
 	var userData = [];
 	var i = 0;
 	while(i < getNumUsers()){
-//		var fullName = data.users[i].firstName + " " + data.users[i].lastName;
 		if(DNA === data.users[i].DNA){
 			for(var j = 0; j < Object.keys(LIST_iLINK).length; j++){
 				var target = data.users[i].iLink[LIST_iLINK[j]];
@@ -67,7 +66,7 @@ export function getUserName(DNA){
 	var i = 0;
 	while(i < getNumUsers()){
 		if(DNA === data.users[i].DNA){
-			var fullName = data.users[i].firstName + " " + data.users[i].lastName;
+			var fullName = data.users[i].userName;
 			return fullName;
 		}
 		i++;

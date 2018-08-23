@@ -9,7 +9,7 @@ Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList
 */
 
 import React, {Component} from 'react';
-import Avatar from '../Components/Avatar';
+//import Avatar from '../Components/Avatar';
 import Face from '../Components/Face';
 import Bio from '../Components/Bio';
 import Name from '../Components/Name';
@@ -23,7 +23,7 @@ import {
 //	getUserDNA,
 	getUserName,
 	getBio,
-	getAvatarLink
+//	getAvatarLink
 } from "../data/userActions";
 
 class IdentityContainer extends Component {
@@ -44,7 +44,6 @@ class IdentityContainer extends Component {
 		return(
 			<div id="main">
 				<Name FullName = {getUserName(this.state.DNA)}/>
-				<Avatar Link={getAvatarLink(this.state.DNA)} />
 				<Face face={getUserLinks(this.state.DNA)} />
 				<Bio Desc={getBio(this.state.DNA)} />
 			</div>

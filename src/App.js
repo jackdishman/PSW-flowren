@@ -8,8 +8,14 @@ class App extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			isLoggedIn:true,
+			isLoggedIn:false,
 		}
+		this.togglePage = this.togglePage.bind(this);
+	}
+
+		togglePage(event){
+			event.preventDefault();
+			this.setState({isLoggedIn: !this.state.isLoggedIn});
 	}
 	render() {
 		return (
@@ -20,6 +26,9 @@ class App extends Component {
 				{(this.state.isLoggedIn) && (
 					<RegisterContainer />
 				)}
+
+				<button onClick={this.togglePage} className='testbutton'>Login</button>
+
 			</div>
 		);
 	}
