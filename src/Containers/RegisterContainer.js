@@ -14,44 +14,26 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { selectUserAction } from '../data/userActions'
 
-//import ReactDOM from 'react-dom';
-import { } from "../data/userActions";
-
 class RegisterContainer extends Component {
 	constructor(props){
 		super(props);
-		console.log(this.props);
 	}
-	renderList(){
-        return this.props.User.map( user => {
-            return (
-                <li
-                    key={user.name}
-                    onClick={() => this.props.selectUserAction(user)}
-                    className="list-group-item">
-                    User title: {user.name}
-                </li>
-            )
-        })
-      }
-
 	render(){
 		return(
 			<div id="main">
 				<RegisterForm />
-				<ul>{this.renderList()}</ul>
 			</div>
 		);
 	}
 }
 
 //required to do
-	function mapDispatchToProps(dispatch) {
-	    return bindActionCreators({ selectUserAction }, dispatch)
-	}
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ selectUserAction }, dispatch)
+}
 
-	function mapStateToProps(state) {
-	    return { User: state.user }
-	}
+function mapStateToProps(state) {
+	return { User: state.user }
+}
 
-	export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)

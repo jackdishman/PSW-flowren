@@ -9,46 +9,34 @@ Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList
 */
 
 import React, {Component} from 'react';
-//import Avatar from '../Components/Avatar';
-import Face from '../Components/Face';
-import Bio from '../Components/Bio';
-import Name from '../Components/Name';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
+import GardenDetail from './GardenDetail';
 
-//import ReactDOM from 'react-dom';
-import {
-//	fetchJSON,
-//	getNumUsers,
-//	getUserFullNames,
-	getUserLinks,
-//	getUserDNA,
-	getUserName,
-	selectUserAction,
-	getBio,
-//	getAvatarLink
-} from "../data/userActions";
 
-class IdentityContainer extends Component {
+import {selectUserAction} from "../data/userActions";
+
+class GardenContainer extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-			DNA: '0002',
-		};
-		this.onTestFunction = this.onTestFunction.bind(this);
 	}
-
-	onTestFunction(){
-		//const data = fetchJSON();
-		console.log('avatar-' + this.state.DNA + '.jpg');
+		renderList(){
+		return this.props.User.map( user => {
+			return (
+				<li
+					key={user.name}
+					onClick={() => this.props.selectUserAction(user)}
+					className="list-group-item">
+						User title: {user.name}
+				</li>
+			)
+		})
 	}
-
 	render(){
 		return(
 			<div id="main">
-				<Name FullName = {getUserName(this.state.DNA)}/>
-				<Face face={getUserLinks(this.state.DNA)} />
-				<Bio Desc={getBio(this.state.DNA)} />
+				<ul>{this.renderList()}</ul>
+				<GardenDetail />
 			</div>
 		);
 	}
@@ -62,5 +50,5 @@ function mapStateToProps(state) {
 	return { User: state.user }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IdentityContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(GardenContainer)
 

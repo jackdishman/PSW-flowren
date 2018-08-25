@@ -2,36 +2,52 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import IdentityContainer from './Containers/IdentityContainer';
 import RegisterContainer from './Containers/RegisterContainer';
-import RegisterDetail from './Containers/RegisterDetail';
+import GardenContainer from './Containers/GardenContainer';
 import './App.css';
 
 class App extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			isLoggedIn:false,
+			activePage:'Garden',
 		}
-		this.togglePage = this.togglePage.bind(this);
+		this.activateIdentityPage = this.activateIdentityPage.bind(this);
+		this.activateRegisterPage = this.activateRegisterPage.bind(this);
+		this.activateGardenPage = this.activateGardenPage.bind(this);
 	}
 
-		togglePage(event){
-			event.preventDefault();
-			this.setState({isLoggedIn: !this.state.isLoggedIn});
+	activateIdentityPage(event){
+		event.preventDefault();
+		this.setState({activePage: 'Identity'});
 	}
+	activateRegisterPage(event){
+		event.preventDefault();
+		this.setState({activePage: 'Register'});
+	}
+	activateGardenPage(event){
+		event.preventDefault();
+		this.setState({activePage: 'Garden'});
+	}
+
 	render() {
 		return (
 			<div className="App" id="wrapper">
-				{!(this.state.isLoggedIn) && (
+				{(this.state.activePage === 'Identity') && (
 					<IdentityContainer />
 				)}
-				{(this.state.isLoggedIn) && (
+				{(this.state.activePage === 'Register') && (
 					<div>
 					<RegisterContainer />
-					<RegisterDetail />
 					</div>
 				)}
-
-				<button onClick={this.togglePage} className='testbutton'>Login</button>
+				{(this.state.activePage === 'Garden') && (
+					<div>
+						<GardenContainer />
+					</div>
+				)}
+				<button onClick={this.activateIdentityPage} className='testbutton'>Identity</button>
+				<button onClick={this.activateRegisterPage} className='testbutton'>Register</button>
+				<button onClick={this.activateGardenPage} className='testbutton'>Garden</button>
 
 			</div>
 		);

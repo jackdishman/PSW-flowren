@@ -24,6 +24,12 @@ export function selectUserAction(user) {
         payload: user
     }
 }
+export function getActiveUser(){
+	return {
+
+	}
+}
+
 	export function createNewDNA(lastDNA){
 		var count = getNumUsers();
 		count++;
