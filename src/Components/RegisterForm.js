@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react';
-//import ReactDOM from 'react-dom';
 import { createNewDNA } from "../data/userActions";
+import {Form,Text,TextArea} from 'react-form';
 import NameAction from '../Components/Register/NameAction';
 
 
@@ -10,15 +10,15 @@ class RegisterForm extends Component {
 		super(props);
 		this.state = {
 			DNA: createNewDNA(),
-			createName:1,
-			nameValue:'',
-			bioValue:'',
-			passwordValue:'',
+			userName:'',
+			bio:'',
+			iLink: [],
 			linkType:'',
 			linkAddress:'',
 		};
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.addFace = this.addFace.bind(this);
 	}
 	handleInputChange(event) {
 		const target = event.target;
@@ -30,16 +30,27 @@ class RegisterForm extends Component {
 	}
 	handleSubmit(event){
 		event.preventDefault();
-		console.log(this.state);
 	}
-
+	addFace(event){
+		event.preventDefault();
+		var identityValue = {
+			"DNA": this.state.DNA,
+			"userName": this.state.userName,
+			"bio": this.state.bio,
+			"iLink": this.state.iLink,
+		}
+	//	var face = {this.state.linkType, this.state.linkAddress}
+		this.state.iLink[(this.state.iLink.length)] = this.state.linkType;
+		console.log(this.state.iLink.length);
+		console.log(identityValue);
+	}
 		render(){
 		return(
 			<div className="RegisterForm">
 				<h1>Register Form</h1>
 				<form onSubmit={this.handleSubmit}>
-					<label>Name: <input name='nameValue' type='text' value={this.state.nameValue} onChange={this.handleInputChange}  /> </label>
-					<label>Bio: <input name='bioValue' type='text' value={this.state.bioValue} onChange={this.handleInputChange}  /> </label>
+					<label>Name: <input name='userName' type='text' value={this.state.userName} onChange={this.handleInputChange}  /> </label>
+					<label>Bio: <input name='bio' type='text' value={this.state.bio} onChange={this.handleInputChange}  /> </label>
 					<div className='createFaces'>
 					<label>Online Identities:
 						<select name='linkType' value={this.state.linkType} onChange={this.handleInputChange} >
@@ -55,6 +66,7 @@ class RegisterForm extends Component {
 					</div>
 					<input type='submit' value='Submit' />
 				</form>
+				<button onClick={this.addFace}> Add Identity </button>
 			</div>
 		);
 	}
