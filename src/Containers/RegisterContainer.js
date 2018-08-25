@@ -10,6 +10,9 @@ Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList
 
 import React, {Component} from 'react';
 import RegisterForm from '../Components/RegisterForm';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { selectUserAction } from '../data/userActions'
 
 //import ReactDOM from 'react-dom';
 import { } from "../data/userActions";
@@ -17,24 +20,38 @@ import { } from "../data/userActions";
 class RegisterContainer extends Component {
 	constructor(props){
 		super(props);
-		this.state = {
-
-		};
-		this.onTestFunction = this.onTestFunction.bind(this);
+		console.log(this.props);
 	}
-
-	onTestFunction(){
-		//const data = fetchJSON();
-		console.log('Test Function');
-	}
+	renderList(){
+        return this.props.User.map( user => {
+            return (
+                <li
+                    key={user.name}
+                    onClick={() => this.props.selectUserAction(user)}
+                    className="list-group-item">
+                    User title: {user.name}
+                </li>
+            )
+        })
+      }
 
 	render(){
 		return(
 			<div id="main">
 				<RegisterForm />
+				<ul>{this.renderList()}</ul>
 			</div>
 		);
 	}
 }
 
-export default RegisterContainer;
+//required to do
+	function mapDispatchToProps(dispatch) {
+	    return bindActionCreators({ selectUserAction }, dispatch)
+	}
+
+	function mapStateToProps(state) {
+	    return { User: state.user }
+	}
+
+	export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)

@@ -17,6 +17,13 @@ JSON FUNCTIONS
 --getAvatarLink(DNA)		returns
 */
 
+export function selectUserAction(user) {
+    console.log(user);
+    return {
+        type: 'USER_SELECTED',
+        payload: user
+    }
+}
 	export function createNewDNA(lastDNA){
 		var count = getNumUsers();
 		count++;

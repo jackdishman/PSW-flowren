@@ -5,12 +5,13 @@
   "dependencies": {
     "jquery": "^3.3.1",
     "json-loader": "^0.5.7",
-    "react": "^16.4.1",
+    "react": "^16.4.2",
     "react-dom": "^16.4.1",
     "react-form": "^3.5.6",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -13,6 +13,8 @@ import React, {Component} from 'react';
 import Face from '../Components/Face';
 import Bio from '../Components/Bio';
 import Name from '../Components/Name';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux'
 
 //import ReactDOM from 'react-dom';
 import {
@@ -51,4 +53,14 @@ class IdentityContainer extends Component {
 	}
 }
 
-export default IdentityContainer;
+function mapDispatchToProps(dispatch) {
+	    return bindActionCreators({ getUserName }, dispatch)
+	}
+
+	function mapStateToProps(state) {
+	    return { DNA: state.DNA }
+	}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IdentityContainer)
+
+//export default IdentityContainer;

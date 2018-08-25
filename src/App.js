@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import IdentityContainer from './Containers/IdentityContainer';
 import RegisterContainer from './Containers/RegisterContainer';
+import RegisterDetail from './Containers/RegisterDetail';
 import './App.css';
 
 class App extends Component {
@@ -24,7 +25,10 @@ class App extends Component {
 					<IdentityContainer />
 				)}
 				{(this.state.isLoggedIn) && (
+					<div>
 					<RegisterContainer />
+					<RegisterDetail />
+					</div>
 				)}
 
 				<button onClick={this.togglePage} className='testbutton'>Login</button>
@@ -33,5 +37,6 @@ class App extends Component {
 		);
 	}
 }
+
 
 export default App;

@@ -21,6 +21,8 @@ class RegisterForm extends Component {
 		this.addFace = this.addFace.bind(this);
 	}
 	handleInputChange(event) {
+		let f = this.state.iLink.slice();
+
 		const target = event.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const name = target.name;
@@ -39,9 +41,9 @@ class RegisterForm extends Component {
 			"bio": this.state.bio,
 			"iLink": this.state.iLink,
 		}
-	//	var face = {this.state.linkType, this.state.linkAddress}
-		this.state.iLink[(this.state.iLink.length)] = this.state.linkType;
-		console.log(this.state.iLink.length);
+		var faceType = (this.state.linkType );
+
+		// this.state.iLink[(this.state.iLink.length)] = face;
 		console.log(identityValue);
 	}
 		render(){
