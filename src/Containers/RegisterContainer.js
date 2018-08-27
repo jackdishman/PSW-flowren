@@ -15,10 +15,10 @@ import { bindActionCreators } from 'redux'
 import { selectUserAction } from '../data/userActions'
 
 class RegisterContainer extends Component {
-	constructor(props){
-		super(props);
-	}
 	render(){
+		if (this.props.activeUser) {
+			console.log(this.props.activeUser);
+		}
 		return(
 			<div id="main">
 				<RegisterForm />

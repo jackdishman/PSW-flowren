@@ -4,6 +4,8 @@ import IdentityContainer from './Containers/IdentityContainer';
 import RegisterContainer from './Containers/RegisterContainer';
 import GardenContainer from './Containers/GardenContainer';
 import './App.css';
+import { connect } from 'react-redux'
+
 
 class App extends Component {
 	constructor(props){
@@ -28,7 +30,6 @@ class App extends Component {
 		event.preventDefault();
 		this.setState({activePage: 'Garden'});
 	}
-
 	render() {
 		return (
 			<div className="App" id="wrapper">
@@ -48,11 +49,13 @@ class App extends Component {
 				<button onClick={this.activateIdentityPage} className='testbutton'>Identity</button>
 				<button onClick={this.activateRegisterPage} className='testbutton'>Register</button>
 				<button onClick={this.activateGardenPage} className='testbutton'>Garden</button>
-
 			</div>
 		);
 	}
 }
 
+function mapStateToProps(state) {
+	return { activeUser: state.activeUser }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);

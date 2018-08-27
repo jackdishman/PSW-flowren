@@ -1,8 +1,7 @@
 
 import React, {Component} from 'react';
 import { createNewDNA } from "../data/userActions";
-import {Form,Text,TextArea} from 'react-form';
-import NameAction from '../Components/Register/NameAction';
+//import NameAction from '../Components/Register/NameAction';
 
 
 class RegisterForm extends Component {
@@ -21,7 +20,6 @@ class RegisterForm extends Component {
 		this.addFace = this.addFace.bind(this);
 	}
 	handleInputChange(event) {
-		let f = this.state.iLink.slice();
 
 		const target = event.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -41,8 +39,6 @@ class RegisterForm extends Component {
 			"bio": this.state.bio,
 			"iLink": this.state.iLink,
 		}
-		var faceType = (this.state.linkType );
-
 		// this.state.iLink[(this.state.iLink.length)] = face;
 		console.log(identityValue);
 	}

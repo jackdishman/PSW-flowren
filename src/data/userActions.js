@@ -3,8 +3,6 @@ const data = require('./users.json');
 
 var LIST_iLINK = ["facebook","twitter","instagram","snapchat","soundcloud"];
 
-var lastDNA = 2;
-
 /*
 JSON FUNCTIONS
 -	getNumUsers()					Returns number of users
@@ -19,22 +17,23 @@ JSON FUNCTIONS
 
 export function selectUserAction(user) {
     console.log(user);
+    setActiveUser(user.name);
     return {
         type: 'USER_SELECTED',
         payload: user
     }
 }
-export function getActiveUser(){
+export function setActiveUser(user){
 	return {
 
 	}
 }
 
-	export function createNewDNA(lastDNA){
-		var count = getNumUsers();
-		count++;
-		return count;
-	}
+export function createNewDNA(lastDNA){
+	var count = getNumUsers();
+	count++;
+	return count;
+}
 
 	// export function getAvatarLink(DNA){
 	// 	return require('../images/avatar-' + DNA + '.jpg');

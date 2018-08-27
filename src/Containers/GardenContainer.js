@@ -11,15 +11,10 @@ Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
-import GardenDetail from './GardenDetail';
-
-
+import GardenDetail from '../Components/GardenDetail';
 import {selectUserAction} from "../data/userActions";
 
 class GardenContainer extends Component {
-	constructor(props){
-		super(props);
-	}
 		renderList(){
 		return this.props.User.map( user => {
 			return (
@@ -47,7 +42,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-	return { User: state.user }
+	return {
+		User: state.user
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GardenContainer)

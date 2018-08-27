@@ -29,26 +29,19 @@ import {
 //	getAvatarLink
 } from "../data/userActions";
 
-class IdentityContainer extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			DNA: '0002',
-		};
-		this.onTestFunction = this.onTestFunction.bind(this);
-	}
 
-	onTestFunction(){
-		//const data = fetchJSON();
-		console.log('avatar-' + this.state.DNA + '.jpg');
-	}
+class IdentityContainer extends Component {
+
+	//this.setState({activeDNA: this.props.activeUser.DNA});
 
 	render(){
+		var activeDNA = this.props.activeUser.DNA;
+		console.log(activeDNA);
 		return(
 			<div id="main">
-				<Name FullName = {getUserName(this.state.DNA)}/>
-				<Face face={getUserLinks(this.state.DNA)} />
-				<Bio Desc={getBio(this.state.DNA)} />
+				<Name FullName = {getUserName(activeDNA)}/>
+				<Face face={getUserLinks(activeDNA)} />
+				<Bio Desc={getBio(activeDNA)} />
 			</div>
 		);
 	}
@@ -59,7 +52,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-	return { User: state.user }
+	return { activeUser: state.activeUser }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(IdentityContainer)
