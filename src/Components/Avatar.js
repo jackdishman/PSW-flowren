@@ -4,13 +4,10 @@ import React, {Component} from 'react';
 
 
 class Avatar extends Component {
-	constructor(props){
-		super(props);
-	}
 	render(){
 		return(
 			<div className="avatar">
-				<img src={this.props.Link} />
+				<img src={this.props.Link} alt={'avatar of user'} />
 			</div>
 		);
 	}

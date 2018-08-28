@@ -17,16 +17,14 @@ JSON FUNCTIONS
 
 export function selectUserAction(user) {
     console.log(user);
-    setActiveUser(user.name);
     return {
         type: 'USER_SELECTED',
         payload: user
     }
 }
-export function setActiveUser(user){
-	return {
 
-	}
+export function addUser(input){
+	console.log('addUser ' + input);
 }
 
 export function createNewDNA(lastDNA){
@@ -35,9 +33,9 @@ export function createNewDNA(lastDNA){
 	return count;
 }
 
-	// export function getAvatarLink(DNA){
-	// 	return require('../images/avatar-' + DNA + '.jpg');
-	// }
+	export function getAvatarLink(DNA){
+		return require('../images/avatar-' + DNA + '.jpg');
+	}
 
 //returns the number of users in users.json
 export function getNumUsers(){

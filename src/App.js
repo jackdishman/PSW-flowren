@@ -34,7 +34,9 @@ class App extends Component {
 		return (
 			<div className="App" id="wrapper">
 				{(this.state.activePage === 'Identity') && (
-					<IdentityContainer />
+					<div>
+						<IdentityContainer />
+					</div>
 				)}
 				{(this.state.activePage === 'Register') && (
 					<div>

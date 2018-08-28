@@ -1,9 +1,17 @@
 {
 	"users": [
 		{
+			"DNA": "0000",
+			"userName": "User",
+			"iLink": {
+				"facebook": "#",
+				"twitter": "#",
+				"soundcloud": "#"
+			}
+		},
+		{
 			"DNA": "0001",
 			"userName": "Jack Dishman",
-			"bio": "Santa Clara University",
 			"iLink": {
 				"facebook": "https://facebook.com/jackdishman",
 				"twitter": "https://twitter.com/jackdishman",
@@ -13,7 +21,6 @@
 		{
 			"DNA": "0002",
 			"userName": "Randy Moss",
-			"bio": "NFL Hall of Fame",
 			"iLink": {
 				"facebook": "https://facebook.com/randymoss",
 				"snapchat": "https://www.snapchat.com/add/randymoss"

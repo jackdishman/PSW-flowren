@@ -739,6 +739,7 @@
 			#main .avatar img {
 				display: block;
 				margin: 0 auto;
+				width:250px; /*added this*/
 				border-radius: 100%;
 				box-shadow: 0 0 0 1.5em #ffffff;
 			}

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 function Faces(props){
 	const face = props.face;
-	console.log(face);
 	return (
 		<ul className="icons">
 			{face.map((f) =>

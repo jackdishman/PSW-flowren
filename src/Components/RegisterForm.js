@@ -1,8 +1,10 @@
 
 import React, {Component} from 'react';
-import { createNewDNA } from "../data/userActions";
-//import NameAction from '../Components/Register/NameAction';
+import { createNewDNA, addUser } from "../data/userActions";
+import Face from '../Components/Face';
 
+//import NameAction from '../Components/Register/NameAction';
+var identityValue;
 
 class RegisterForm extends Component {
 	constructor(props){
@@ -10,7 +12,6 @@ class RegisterForm extends Component {
 		this.state = {
 			DNA: createNewDNA(),
 			userName:'',
-			bio:'',
 			iLink: [],
 			linkType:'',
 			linkAddress:'',
@@ -20,7 +21,6 @@ class RegisterForm extends Component {
 		this.addFace = this.addFace.bind(this);
 	}
 	handleInputChange(event) {
-
 		const target = event.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const name = target.name;
@@ -28,43 +28,54 @@ class RegisterForm extends Component {
 			[name]: value,
 		});
 	}
+
 	handleSubmit(event){
 		event.preventDefault();
+		var obj = JSON.stringify(identityValue);
+		addUser(obj);
 	}
+
 	addFace(event){
 		event.preventDefault();
-		var identityValue = {
+		var newEntry = [this.state.linkType, this.state.linkAddress];
+		this.state.iLink.push(newEntry);
+		identityValue = {
 			"DNA": this.state.DNA,
 			"userName": this.state.userName,
-			"bio": this.state.bio,
 			"iLink": this.state.iLink,
 		}
-		// this.state.iLink[(this.state.iLink.length)] = face;
+		this.setState({linkType: '', linkAddress: ''});
 		console.log(identityValue);
 	}
+
 		render(){
 		return(
 			<div className="RegisterForm">
 				<h1>Register Form</h1>
 				<form onSubmit={this.handleSubmit}>
-					<label>Name: <input name='userName' type='text' value={this.state.userName} onChange={this.handleInputChange}  /> </label>
-					<label>Bio: <input name='bio' type='text' value={this.state.bio} onChange={this.handleInputChange}  /> </label>
-					<div className='createFaces'>
-					<label>Online Identities:
-						<select name='linkType' value={this.state.linkType} onChange={this.handleInputChange} >
-							<option value='facebook'>Facebook</option>
-							<option value='twitter'>Twitter</option>
-							<option value='soundcloud'>Soundcloud</option>
-							<option value='instagram'>Instagram</option>
-							<option value='spotify'>Spotify</option>
-							<option value='linkedin'>LinkedIn</option>
-						</select>
-						<input name='linkAddress' type='text' value={this.state.linkAddress} onChange={this.handleInputChange} placeholder={'web url'} />
-						</label>
+					<div>
+						<label>Name: <input name='userName' type='text' value={this.state.userName} onChange={this.handleInputChange}  /> </label>
 					</div>
+
+						<div className='createFaces'>
+						<label>Online Identities:
+							<select name='linkType' value={this.state.linkType} onChange={this.handleInputChange} >
+								<option value=''>Select Identity</option>
+								<option value='facebook'>Facebook</option>
+								<option value='twitter'>Twitter</option>
+								<option value='soundcloud'>Soundcloud</option>
+								<option value='instagram'>Instagram</option>
+								<option value='spotify'>Spotify</option>
+								<option value='linkedin'>LinkedIn</option>
+							</select>
+							<input name='linkAddress' type='text' value={this.state.linkAddress} onChange={this.handleInputChange} placeholder={'web url'} />
+							</label>
+					</div>
+					<button onClick={this.addFace}> Add Identity </button>
+					<br />
+					<Face face={this.state.iLink}/>
 					<input type='submit' value='Submit' />
 				</form>
-				<button onClick={this.addFace}> Add Identity </button>
 			</div>
 		);
 	}
