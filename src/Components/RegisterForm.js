@@ -31,8 +31,7 @@ class RegisterForm extends Component {
 
 	handleSubmit(event){
 		event.preventDefault();
-		var obj = JSON.stringify(identityValue);
-		addUser(obj);
+		addUser(identityValue);
 	}
 
 	addFace(event){

@@ -24,7 +24,7 @@ export function selectUserAction(user) {
 }
 
 export function addUser(input){
-	console.log('addUser ' + input);
+
 }
 
 export function createNewDNA(lastDNA){
